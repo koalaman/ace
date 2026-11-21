@@ -29,6 +29,7 @@
  * ***** END LICENSE BLOCK ***** */
 
 define(function(require, exports, module) {
+var ace = require("ace/ace");
 var dom = require("ace/lib/dom");
 var event = require("ace/lib/event");
 var Range = require("ace/range").Range;
@@ -48,7 +49,7 @@ function def(o, key, get) {
         console.error(e);
     }
 }
-def(window, "ace", function(){  return window.env.editor });
+def(window, "ace", function(){  return ace });
 def(window, "editor", function(){  return window.env.editor == logEditor ? editor : window.env.editor });
 def(window, "session", function(){ return window.editor.session });
 def(window, "split", function(){  return window.env.split });
@@ -59,6 +60,7 @@ def(window, "devUtil", function(){ return exports });
 exports.addGlobals = function() {
     window.oop = require("ace/lib/oop");
     window.dom = require("ace/lib/dom");
+    window.user = require("ace/test/user");
     window.Range = require("ace/range").Range;
     window.Editor = require("ace/editor").Editor;
     window.assert = require("ace/test/asyncjs/assert");
@@ -293,13 +295,13 @@ function toString(x) {
 }
 
 exports.getUI = function(container) {
-    return ["div", {},
+    return ["div", {role: "group", "aria-label": "Test"},
         " Test ", 
-        ["button", {onclick: exports.openLogView}, "O"],
+        ["button", {"aria-label": "Open Log View", onclick: exports.openLogView}, "O"],
         ["button", {onclick: exports.record}, "Record"],
         ["button", {onclick: exports.stop}, "Stop"],
         ["button", {onclick: exports.play}, "Play"],
-        ["button", {onclick: exports.closeLogView}, "X"],
+        ["button", {"aria-label": "Close Log View", onclick: exports.closeLogView}, "X"],
     ];
 };
 
@@ -337,6 +339,8 @@ exports.textInputDebugger = {
             if (ignoreEvents) return;
             var data = {
                 _: e.type, 
+                data: e.data,
+                inputType: e.inputType,
                 range: [text.selectionStart, text.selectionEnd], 
                 value: text.value, 
                 key: e.key && {

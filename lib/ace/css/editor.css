@@ -29,6 +29,7 @@ styles.join("\n")
 .ace_editor {
     position: relative;
     overflow: hidden;
+    padding: 0;
     font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
     direction: ltr;
     text-align: left;
@@ -68,10 +69,6 @@ styles.join("\n")
 }
 .ace_dragging.ace_dark .ace_scroller:before{
     background: rgba(0, 0, 0, 0.01);
-}
-
-.ace_selecting, .ace_selecting * {
-    cursor: text !important;
 }
 
 .ace_gutter {
