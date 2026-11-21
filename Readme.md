@@ -1,7 +1,8 @@
 Ace (Ajax.org Cloud9 Editor)
 ============================
 
-[![Build Status](https://secure.travis-ci.org/ajaxorg/ace.svg?branch=master)](http://travis-ci.org/ajaxorg/ace) [![npm](https://img.shields.io/npm/v/ace-builds.svg)](https://www.npmjs.com/package/ace-builds)
+[![Build Status](https://github.com/ajaxorg/ace/workflows/CI/badge.svg)](https://github.com/ajaxorg/ace/actions) 
+[![npm](https://img.shields.io/npm/v/ace-builds.svg)](https://www.npmjs.com/package/ace-builds)
 
 _Note_: The new site at http://ace.c9.io contains all the info below along with an embedding guide and all the other resources you need to get started with Ace.
 
@@ -146,7 +147,7 @@ Running the Unit Tests
 The Ace unit tests can run on node.js. Assuming you have already done `npm install`, just call:
 
 ```bash
-node lib/ace/test/all.js
+npm run test
 ```
 
 You can also run the tests in your browser by serving:
